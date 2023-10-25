@@ -15,52 +15,29 @@ const EmailSection = () => {
       subject: e.target.subject.value,
       message: e.target.message.value,
     };
-    const JSONdata = JSON.stringify(data);
-    const endpoint = "/api/send";
+    // const JSONdata = JSON.stringify(data);
+    // const endpoint = "/api/send";
 
-    // const HandleSubmit = async (e: { preventDefault: () => void; }) => {
-    //   e.preventDefault();
-    //   setFormState({ success: false, error: false, loading: true });
-    //   try {
-    //       const response = await fetch("/api/contact", {
-    //           method: "POST",
-    //           headers: {
-    //               Accept: "application/json, text/plain, */*",
-    //               "Content-Type": "application/json"
-    //           },
-    //           body: JSON.stringify(formData)
-    //       });
+    
+    // // Form the request for sending data to the server.
+    // const options = {
+    //   // The method is POST because we are sending data.
+    //   method: "POST",
+    //   // Tell the server we're sending JSON.
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   // Body of the request is the JSON data we created above.
+    //   body: JSONdata,
+    // };
 
-    //       if (response.status === 200) {
-    //           setFormState({ success: true, error: false, loading: false });
-    //           setFormData({ fullName: "", email: "", subject: "", message: "" });
-    //       } else {
-    //           setFormState({ success: false, error: true, loading: false });
-    //       }
-    //   } catch (error) {
-    //       console.log("An Error Occurred: ", error);
-    //       setFormState({ success: false, error: true, loading: false });
-    //   }
+    // const response = await fetch(endpoint, options);
+    // const resData = await response.json();
 
-    // Form the request for sending data to the server.
-    const options = {
-      // The method is POST because we are sending data.
-      method: "POST",
-      // Tell the server we're sending JSON.
-      headers: {
-        "Content-Type": "application/json",
-      },
-      // Body of the request is the JSON data we created above.
-      body: JSONdata,
-    };
-
-    const response = await fetch(endpoint, options);
-    const resData = await response.json();
-
-    if (response.status === 200) {
-      console.log("Message sent.");
-      setEmailSubmitted(true);
-    }
+    // if (response.status === 200) {
+    //   console.log("Message sent.");
+    //   setEmailSubmitted(true);
+    // }
   };
 
   return (
