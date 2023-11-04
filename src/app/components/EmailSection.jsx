@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
+
 import GithubIcon from "../../../public/github-icon.svg";
 import LinkedinIcon from "../../../public/linkedin-icon.svg";
 import Link from "next/link";
@@ -25,7 +26,7 @@ const EmailSection = () => {
     e.preventDefault();
     setFormState({ success: false, error: false, loading: true });
     try {
-      const response = await fetch("pages/api/contact", {
+      const response = await fetch("api/route", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
@@ -80,6 +81,28 @@ const EmailSection = () => {
           <form className="flex flex-col" onSubmit={handleSubmit}>
             <div className="mb-6">
               <label
+                htmlFor="fullName"
+                className="text-white block mb-2 text-sm font-medium"
+              >
+                Your Full name..
+              </label>
+              <input
+                name="fullName"
+                type="text"
+                required
+                value={formData.fullName}
+                placeholder="clark kent"
+                onChange={(e) => {
+                  setFormData({
+                    ...formData,
+                    fullName: e.target.value,
+                  });
+                }}
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
+              />
+            </div>
+            <div className="mb-6">
+              <label
                 htmlFor="email"
                 className="text-white block mb-2 text-sm font-medium"
               >
@@ -88,10 +111,7 @@ const EmailSection = () => {
               <input
                 name="email"
                 type="email"
-                id="email"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="jacob@google.com"
                 value={formData.email}
                 onChange={(e) => {
                   setFormData({
@@ -99,29 +119,7 @@ const EmailSection = () => {
                     email: e.target.value,
                   });
                 }}
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                htmlFor="fullName"
-                className="text-white block mb-2 text-sm font-medium"
-              >
-                Your Full name..
-              </label>
-              <input
-                name="fullName"
-                type="fullName"
-                id="fullName"
-                required
                 className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
-                placeholder="clark kent"
-                value={formData.fullName}
-                onChange={(e) => {
-                  setFormData({
-                    ...formData,
-                    fullName: e.target.value,
-                  });
-                }}
               />
             </div>
             <div className="mb-6">
@@ -134,17 +132,16 @@ const EmailSection = () => {
               <input
                 name="subject"
                 type="text"
-                id="subject"
                 required
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Just saying hi"
-                alue={formData.subject}
+                value={formData.subject}
                 onChange={(e) => {
                   setFormData({
                     ...formData,
                     subject: e.target.value,
                   });
                 }}
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
               />
             </div>
             <div className="mb-6">
@@ -156,8 +153,6 @@ const EmailSection = () => {
               </label>
               <textarea
                 name="message"
-                id="message"
-                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
                 placeholder="Let's talk about..."
                 value={formData.message}
                 onChange={(e) => {
@@ -166,6 +161,7 @@ const EmailSection = () => {
                     message: e.target.value,
                   });
                 }}
+                className="bg-[#18191E] border border-[#33353F] placeholder-[#9CA2A9] text-gray-100 text-sm rounded-lg block w-full p-2.5"
               />
             </div>
             <button
@@ -198,4 +194,4 @@ const EmailSection = () => {
   );
 };
 
-export default EmailSection;
+export default memo(EmailSection);

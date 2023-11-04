@@ -2,9 +2,9 @@ const nodemailer = require("nodemailer");
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
-    const { fullName, email, subject, message } = req.body;
+    const { email, fullName, subject, message } = req.body;
 
-    if (!fullName || !email || !subject || !message) {
+    if (!email || !fullName || !subject || !message) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
@@ -23,9 +23,9 @@ export default async function handler(req, res) {
 
     const mailOptions = {
       from: email,
-      to: "dami600bab@gmail.com",
+      to: "oghenevictor54p@gmail.com",
       replyTo: email,
-      subject: `${subject} — Message From DamisiBabalola.com`,
+      subject: `${subject} — Message From victorOghene.com`,
       text: message,
       html: `
                 <h1>New message from ${email}</h1>
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
     try {
       // Send email
-      await transporter.sendMail(mailOptions, (err, info) => {
+      transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
           return res.status(500).json({ error: err.message });
         }
