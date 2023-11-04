@@ -26,7 +26,7 @@ const EmailSection = () => {
     e.preventDefault();
     setFormState({ success: false, error: false, loading: true });
     try {
-      const response = await fetch("api/route", {
+      const response = await fetch("api/mail", {
         method: "POST",
         headers: {
           Accept: "application/json, text/plain, */*",
