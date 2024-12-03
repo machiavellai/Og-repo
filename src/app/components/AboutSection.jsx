@@ -17,18 +17,44 @@ const TAB_DATA = [
         <li>Springboot</li>
         <li>JavaScript</li>
         <li>React</li>
+        <li>Team player</li>
       </ul>
     ),
   },
+  // {
+  //   title: "Soft Skills",
+  //   id: "skills",
+  //   content: (
+  //     <ul className="list-disc pl-2">
+  //       <li>Node.js</li>
+  //       <li>Express</li>
+  //       <li>PostgreSQL</li>
+  //       <li>Sequelize</li>
+  //       <li>Java</li>
+  //       <li>Springboot</li>
+  //       <li>JavaScript</li>
+  //       <li>React</li>
+  //       <li>Team player</li>
+  //     </ul>
+  //   ),
+  // },
 ];
-
 
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
   const [isPending, startTransition] = useTransition();
 
+  const [tabs, setTabs] = useState("skills");
+  const [isPending1, startTransition1] = useTransition();
+
   const handleTabChange = (id) => {
     startTransition(() => {
+      setTab(id);
+    });
+  };
+
+  const handleButtonChange = (id) => {
+    startTransition1(() => {
       setTab(id);
     });
   };
@@ -43,10 +69,11 @@ const AboutSection = () => {
             I am a Dedicated Full-Stack Developer and Product Designer with 3
             years of hands-on experience in building dynamic web and mobile
             applications. Proficient in HTML, CSS, JavaScript, Node.js, React,
-            Java, Springboot/Spring, Next.js, TypeScript, and React Native, with
-            a strong foundation in both relational (PostgreSQL) and NoSQL
-            (MongoDB) databases.. I am a team player and I am excited to work
-            with others to create amazing applications.
+            Java, Springboot/Spring, Next.js, End-to-end testing, Github, Git,
+            Firbase, TypeScript, and React Native, with a strong foundation in
+            both relational (PostgreSQL) and NoSQL (MongoDB) databases.. I am a
+            team player and I am excited to work with others to create amazing
+            applications.
           </p>
           <div className="flex flex-row justify-start mt-8">
             <TabButton
@@ -56,7 +83,6 @@ const AboutSection = () => {
               {" "}
               Skills{" "}
             </TabButton>
-            
           </div>
           <div className="mt-8">
             {TAB_DATA.find((t) => t.id === tab).content}
